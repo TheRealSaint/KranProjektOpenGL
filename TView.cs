@@ -7,12 +7,10 @@ using System.Text;
 using CsGL.OpenGL;
 using System.Windows.Forms;
 
-namespace KranProjektOpenGL
+namespace DemoOpenGLBasicsCS
 {
     public partial class TView : OpenGLControl
     {
-        TKran kran = new TKran();
-
         /// <summary>
         /// hier wird gezeichnet
         /// </summary>
@@ -25,153 +23,58 @@ namespace KranProjektOpenGL
             //coordinateSystem(2);
 
             GL.glTranslated(0.0, 0.0, -6.0);
+            
+            GL.glRotated(90, 1, 0, 0);
+            //coordinateSystem(0.5);
 
             coordinateSystem(1);
-            
-            createBase(3, 0.2, System.Drawing.ColorTranslator.FromHtml("#44DD44"));
-            kran.draw();
-
-            /*
-            GL.glRotated(arm1rot[0], 1, 0, 0);
-            GL.glRotated(arm1rot[1], 0, 1, 0);
-            GL.glRotated(arm1rot[2], 0, 0, 1);
-            GL.glColor3f(0.4f, 0.4f, 1.0f);
-            GLUquadric link3 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(link3, GLU.GLU_LINE);
-            GLU.gluSphere(link3, 0.2, 8, 8);
-
-            GL.glTranslated(0.0, 0.0, -1.0);
 
             // Zylinderobjekt erzeugen
+            GLUquadric zylinder = GL.gluNewQuadric();
+
+            // Zeicheneigenschaften einstellen:
+            // Drahtgittermodell
+            GLU.gluQuadricDrawStyle(zylinder, GLU.GLU_LINE);
+
+            // ab jetzt in blau zeichnen
             GL.glColor3f(0.0f, 0.0f, 1.0f);
-            GLUquadric arm1 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(arm1, GLU.GLU_LINE);
-            GLU.gluCylinder(arm1, 0.2, 0.2, 1, 20, 10);
 
-            // Zylinderobjekt erzeugen
-            GL.glRotated(arm2rot[0], 1, 0, 0);
-            GL.glRotated(arm2rot[1], 0, 1, 0);
-            GL.glRotated(arm2rot[2], 0, 0, 1);
-            GL.glColor3f(0.4f, 0.4f, 1.0f);
-            GLUquadric link1 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(link1, GLU.GLU_LINE);
-            GLU.gluSphere(link1, 0.2, 8, 8);
+            // Zeichnen eines Zylinders
+            // bottom-Durchmesser, top-Durchmesser, Höhe,
+            // Anzahl der Linien-Segmente
+            // Anzahl der Linien in der Höhe
 
-            GL.glRotated(-120, 1, 0, 0);
-            GL.glColor3f(0.0f, 0.0f, 1.0f);
-            GLUquadric arm2 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(arm2, GLU.GLU_LINE);
-            GLU.gluCylinder(arm2, 0.2, 0.2, 1, 20, 10);
+            // Hier wird die Haupt-Kran Achse gezeichnet
+            GLU.gluCylinder(zylinder, 0.2, 0.2, 2, 200, 100);
 
-            GL.glTranslated(0.0, 0.0, 1.0);
+            //TESTBEREICH MAGENTA ZYLINDER2
+            GL.glTranslated(0.0, 0.0, 0.0);
+            GL.glRotated(120, 0, 1, 0);
+            GL.glColor3f(1.0f, 0.0f, 1.0f);
+            GLUquadric zylinder2 = GL.gluNewQuadric();
+            GLU.gluCylinder(zylinder2, 0.1, 0.1, 1.5, 20, 10);
 
-            GL.glColor3f(0.4f, 0.4f, 1.0f);
-            GLUquadric link2 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(link2, GLU.GLU_LINE);
-            GLU.gluSphere(link2, 0.2, 8, 8);
-
-            GLU.glPushMatrix();
-            GLU.glPushMatrix();
-            GLU.glPushMatrix();
-            GLU.glPushMatrix();
-            GLU.glPushMatrix();
-
-            double fingerswidth = 0.03;
-
-            GLU.glPopMatrix();
-            GL.glRotated(45, 1, 0, 0);
-            GL.glColor3f(1.0f, 0.4f, 0.4f);
-            GLUquadric finger1 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(finger1, GLU.GLU_LINE);
-            GLU.gluCylinder(finger1, fingerswidth, fingerswidth, 0.3, 20, 10);
-
-            GL.glTranslated(0.0, 0.0, 0.3);
-            GL.glColor3f(0.4f, 0.4f, 1.0f);
-            GLUquadric fingerlink1 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(fingerlink1, GLU.GLU_LINE);
-            GLU.gluSphere(fingerlink1, fingerswidth, 8, 8);
+            //TESTBEREICH GRÜNER ZYLINDER3
+            GL.glTranslated(0.0, 0.0, 1.5);
+            GL.glRotated(-60, 0, 1, 0);
+            GL.glColor3f(0.0f, 1.0f, 0.0f);
+            GLUquadric zylinder3 = GL.gluNewQuadric();
+            GLU.gluCylinder(zylinder3, 0.1, 0.1, 1.5, 20, 10);
             
-            GL.glColor3f(1.0f, 0.4f, 0.4f);
-            GLUquadric finger1p2 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(finger1p2, GLU.GLU_LINE);
-            GLU.gluCylinder(finger1p2, fingerswidth, fingerswidth, 0.1, 20, 10);
+            //TESTBEREICH ROTER ZYLINDER4
+            GL.glTranslated(0.0, 0.0, 1.5);
+            GL.glRotated(-60, 0, 1, 0);
+            GL.glColor3f(1.0f, 0.0f, 0.0f);
+            GLUquadric zylinder4 = GL.gluNewQuadric();
+            GLU.gluCylinder(zylinder4, 0.01, 0.01, 1.0, 20, 10);
 
-            GL.glTranslated(0.0, 0.0, 0.1);
-            GL.glColor3f(0.4f, 0.4f, 1.0f);
-            GLUquadric fingerlink1p2 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(fingerlink1p2, GLU.GLU_LINE);
-            GLU.gluSphere(fingerlink1p2, fingerswidth, 8, 8);
+            //TESTBEREICH GELBE KUGEL
+            GL.glTranslated(0.0, 0.0, 1.5);
+            GL.glRotated(0, 0, 0, 0);
+            GL.glColor3f(0.50f, 0.50f, 0.50f);
+            GLUT.glutWireSphere(0.5, 100, 150);
+                        
 
-            for (int i = 0; i < 4; i++)
-            {
-                int startdegree = -15;
-                int degree = startdegree + 15 * i;
-
-                GLU.glPopMatrix();
-                GL.glRotated(degree, 1, 0, 0);
-                GL.glColor3f(1.0f, 0.4f, 0.4f);
-                GLUquadric finger2 = GL.gluNewQuadric();
-                GLU.gluQuadricDrawStyle(finger2, GLU.GLU_LINE);
-                GLU.gluCylinder(finger2, fingerswidth, fingerswidth, 0.3, 20, 10);
-
-                GL.glTranslated(0.0, 0.0, 0.3);
-                GL.glRotated(finger1rot[i], 0, 1, 0);
-                GL.glColor3f(0.4f, 0.4f, 1.0f);
-                GLUquadric fingerlink2 = GL.gluNewQuadric();
-                GLU.gluQuadricDrawStyle(fingerlink2, GLU.GLU_LINE);
-                GLU.gluSphere(fingerlink2, fingerswidth, 8, 8);
-
-                GL.glRotated(-degree, 1, 0, 0);
-                GL.glColor3f(1.0f, 0.4f, 0.4f);
-                GLUquadric finger2p2 = GL.gluNewQuadric();
-                GLU.gluQuadricDrawStyle(finger2p2, GLU.GLU_LINE);
-                GLU.gluCylinder(finger2p2, fingerswidth, fingerswidth, 0.1, 20, 10);
-
-                GL.glTranslated(0.0, 0.0, 0.1);
-                GL.glRotated(finger2rot[i], 0, 1, 0);
-                GL.glColor3f(0.4f, 0.4f, 1.0f);
-                GLUquadric fingerlink2p2 = GL.gluNewQuadric();
-                GLU.gluQuadricDrawStyle(fingerlink2p2, GLU.GLU_LINE);
-                GLU.gluSphere(fingerlink2p2, fingerswidth, 8, 8);
-
-                GL.glColor3f(1.0f, 0.4f, 0.4f);
-                GLUquadric finger2p3 = GL.gluNewQuadric();
-                GLU.gluQuadricDrawStyle(finger2p3, GLU.GLU_LINE);
-                GLU.gluCylinder(finger2p3, fingerswidth, fingerswidth, 0.1, 20, 10);
-
-                GL.glTranslated(0.0, 0.0, 0.1);
-                GL.glColor3f(0.4f, 0.4f, 1.0f);
-                GLUquadric fingerlink2p3 = GL.gluNewQuadric();
-                GLU.gluQuadricDrawStyle(fingerlink2p3, GLU.GLU_LINE);
-                GLU.gluSphere(fingerlink2p3, fingerswidth, 8, 8);
-            }
-            */
-        }
-
-        private void createBase(double radius, double height, System.Drawing.Color color)
-        {
-            float red = (float)color.R / 255;
-            float green = (float)color.G / 255;
-            float blue = (float)color.B / 255;
-
-            GL.glColor3f(red * 1.15f, green * 1.15f, blue * 1.15f);
-            GLUquadric ground = GL.gluNewQuadric();
-            GLU.gluCylinder(ground, radius, radius, height, 64, 1);
-            GLU.gluQuadricDrawStyle(ground, GLU.GLU_FILL);
-
-            GL.glColor3f(red, green, blue);
-
-            GLUquadric groundpanel = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(groundpanel, GLU.GLU_FILL);
-            GLU.gluDisk(groundpanel, 0, radius, 64, 2);
-
-            GL.glTranslated(0.0, 0.0, height);
-
-            GL.glColor3f(red / 1.15f, green / 1.15f, blue / 1.15f);
-
-            GLUquadric groundpanel2 = GL.gluNewQuadric();
-            GLU.gluQuadricDrawStyle(groundpanel2, GLU.GLU_FILL);
-            GLU.gluDisk(groundpanel2, height, radius, 64, 2);
         }
 
         /// <summary>
@@ -287,12 +190,6 @@ namespace KranProjektOpenGL
             }
         }
 
-        public void changeVal(int obj, int val)
-        {
-            if (obj == 1) { kran.targetAngle = val; };
-            if (obj == 2) { kran.targetArmPosition = (double)val / 20; };
-            Refresh();
-        }
 
         // Attribute für den "Drehwürfel"
         int xAngle, yAngle, xDelta, yDelta, zDelta;

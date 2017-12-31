@@ -1,4 +1,4 @@
-﻿namespace KranProjektOpenGL
+﻿namespace DemoOpenGLBasicsCS
 {
    partial class TView
    {
