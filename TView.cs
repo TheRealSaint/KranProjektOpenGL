@@ -9,73 +9,100 @@ using System.Windows.Forms;
 
 namespace DemoOpenGLBasicsCS
 {
-    public partial class TView : OpenGLControl
+    public partial class TView : OpenGLControl   
     {
+        TKran kran = new TKran();
+
         /// <summary>
         /// hier wird gezeichnet
         /// </summary>
         public void drawScene()
         {
-            // Verschieben des Koordinatensystems um -6 in Z-Richtung
-            // also "nach hinten"
-            // und kippen nach Oben
-
-            //coordinateSystem(2);
-
-            GL.glTranslated(0.0, 0.0, -6.0);
-            
-            GL.glRotated(90, 1, 0, 0);
+                        
             //coordinateSystem(0.5);
-
             coordinateSystem(1);
 
-            // Zylinderobjekt erzeugen
-            GLUquadric zylinder = GL.gluNewQuadric();
+            //Bodenplatte erzeugen
+            //kran.createBase(2, 0.1, System.Drawing.ColorTranslator.FromHtml("#44DD44"));
 
-            // Zeicheneigenschaften einstellen:
-            // Drahtgittermodell
-            GLU.gluQuadricDrawStyle(zylinder, GLU.GLU_LINE);
+            //Kran erzeugen
+            kran.draw();
 
-            // ab jetzt in blau zeichnen
-            GL.glColor3f(0.0f, 0.0f, 1.0f);
 
-            // Zeichnen eines Zylinders
-            // bottom-Durchmesser, top-Durchmesser, Höhe,
-            // Anzahl der Linien-Segmente
-            // Anzahl der Linien in der Höhe
 
-            // Hier wird die Haupt-Kran Achse gezeichnet
-            GLU.gluCylinder(zylinder, 0.2, 0.2, 2, 200, 100);
+            //// Zylinderobjekt erzeugen
+            //GLUquadric zylinder = GL.gluNewQuadric();
 
-            //TESTBEREICH MAGENTA ZYLINDER2
-            GL.glTranslated(0.0, 0.0, 0.0);
-            GL.glRotated(120, 0, 1, 0);
-            GL.glColor3f(1.0f, 0.0f, 1.0f);
-            GLUquadric zylinder2 = GL.gluNewQuadric();
-            GLU.gluCylinder(zylinder2, 0.1, 0.1, 1.5, 20, 10);
+            //// Zeicheneigenschaften einstellen:
+            //// Drahtgittermodell
+            //GLU.gluQuadricDrawStyle(zylinder, GLU.GLU_LINE);
 
-            //TESTBEREICH GRÜNER ZYLINDER3
-            GL.glTranslated(0.0, 0.0, 1.5);
-            GL.glRotated(-60, 0, 1, 0);
-            GL.glColor3f(0.0f, 1.0f, 0.0f);
-            GLUquadric zylinder3 = GL.gluNewQuadric();
-            GLU.gluCylinder(zylinder3, 0.1, 0.1, 1.5, 20, 10);
+            //// ab jetzt in blau zeichnen
+            //GL.glColor3f(0.0f, 0.0f, 1.0f);
+
+            //// Zeichnen eines Zylinders
+            //// bottom-Durchmesser, top-Durchmesser, Höhe,
+            //// Anzahl der Linien-Segmente
+            //// Anzahl der Linien in der Höhe
+
+            //// Hier wird die Haupt-Kran Achse gezeichnet
+            //GLU.gluCylinder(zylinder, 0.2, 0.2, 2, 200, 100);
+
+            ////TESTBEREICH MAGENTA ZYLINDER2
+            //GL.glTranslated(0.0, 0.0, 0.0);
+            //GL.glRotated(120, 0, 1, 0);
+            //GL.glColor3f(1.0f, 0.0f, 1.0f);
+            //GLUquadric zylinder2 = GL.gluNewQuadric();
+            //GLU.gluCylinder(zylinder2, 0.1, 0.1, 1.5, 20, 10);
+
+            ////TESTBEREICH GRÜNER ZYLINDER3
+            //GL.glTranslated(0.0, 0.0, 1.5);
+            //GL.glRotated(-60, 0, 1, 0);
+            //GL.glColor3f(0.0f, 1.0f, 0.0f);
+            //GLUquadric zylinder3 = GL.gluNewQuadric();
+            //GLU.gluCylinder(zylinder3, 0.1, 0.1, 1.5, 20, 10);
             
-            //TESTBEREICH ROTER ZYLINDER4
-            GL.glTranslated(0.0, 0.0, 1.5);
-            GL.glRotated(-60, 0, 1, 0);
-            GL.glColor3f(1.0f, 0.0f, 0.0f);
-            GLUquadric zylinder4 = GL.gluNewQuadric();
-            GLU.gluCylinder(zylinder4, 0.01, 0.01, 1.0, 20, 10);
+            ////TESTBEREICH ROTER ZYLINDER4
+            //GL.glTranslated(0.0, 0.0, 1.5);
+            //GL.glRotated(-60, 0, 1, 0);
+            //GL.glColor3f(1.0f, 0.0f, 0.0f);
+            //GLUquadric zylinder4 = GL.gluNewQuadric();
+            //GLU.gluCylinder(zylinder4, 0.01, 0.01, 1.0, 20, 10);
 
-            //TESTBEREICH GELBE KUGEL
-            GL.glTranslated(0.0, 0.0, 1.5);
-            GL.glRotated(0, 0, 0, 0);
-            GL.glColor3f(0.50f, 0.50f, 0.50f);
-            GLUT.glutWireSphere(0.5, 100, 150);
+            ////TESTBEREICH GELBE KUGEL
+            //GL.glTranslated(0.0, 0.0, 1.5);
+            //GL.glRotated(0, 0, 0, 0);
+            //GL.glColor3f(0.50f, 0.50f, 0.50f);
+            //GLUT.glutWireSphere(0.5, 100, 150);
                         
 
         }
+
+        //private void createBase(double radius, double height, System.Drawing.Color color)
+        //{
+        //    float red = (float)color.R / 255;
+        //    float green = (float)color.G / 255;
+        //    float blue = (float)color.B / 255;
+
+        //    GL.glColor3f(red * 1.15f, green * 1.15f, blue * 1.15f);
+        //    GLUquadric ground = GL.gluNewQuadric();
+        //    GLU.gluCylinder(ground, radius, radius, height, 64, 1);
+        //    GLU.gluQuadricDrawStyle(ground, GLU.GLU_FILL);
+
+        //    GL.glColor3f(red, green, blue);
+
+        //    GLUquadric groundpanel = GL.gluNewQuadric();
+        //    GLU.gluQuadricDrawStyle(groundpanel, GLU.GLU_FILL);
+        //    GLU.gluDisk(groundpanel, 0, radius, 64, 2);
+
+        //    GL.glTranslated(0.0, 0.0, height);
+
+        //    GL.glColor3f(red / 1.15f, green / 1.15f, blue / 1.15f);
+
+        //    GLUquadric groundpanel2 = GL.gluNewQuadric();
+        //    GLU.gluQuadricDrawStyle(groundpanel2, GLU.GLU_FILL);
+        //    GLU.gluDisk(groundpanel2, height, radius, 64, 2);
+        //}
 
         /// <summary>
         /// OpenGL View
@@ -190,6 +217,14 @@ namespace DemoOpenGLBasicsCS
             }
         }
 
+        public void changeVal(int obj, int val)
+        {
+            if (obj == 1) { kran.targetAngle = val; };
+            if (obj == 2) { kran.targetArmLength = (double)val / 10; };
+            if (obj == 3) { kran.targetRopeLength = (double)val / 10 ; };
+            if (obj == 4) { kran.targetBowlDiameter = (double)val / 20; };
+            Refresh();
+        }
 
         // Attribute für den "Drehwürfel"
         int xAngle, yAngle, xDelta, yDelta, zDelta;
